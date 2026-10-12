@@ -1,0 +1,20 @@
+﻿# Dependencies
+node_modules/
+.npm/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs & temp
+*.log
+npm-debug.log*
+.temp/
+.tmp/
+
+# IDE & Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

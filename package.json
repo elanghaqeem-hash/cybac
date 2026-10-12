@@ -1,0 +1,9 @@
+﻿{
+  "name": "technotama-cybersecurity-academy-lms",
+  "version": "1.0.0",
+  "description": "Interactive LMS Prototype for Technotama Cybersecurity Academy",
+  "scripts": {
+    "dev": "npx -y serve",
+    "push": "powershell -ExecutionPolicy Bypass -File ./push-auto.ps1"
+  }
+}
