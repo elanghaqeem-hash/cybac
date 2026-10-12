@@ -7,14 +7,20 @@ echo ==========================================
 echo  Technotama LMS - Automated Git Push Sync 
 echo ==========================================
 
-echo [1/3] Staging changes...
+echo [1/3] Menambahkan seluruh file...
 git add -A
 
-echo [2/3] Committing changes...
-git commit -m "%MSG%"
+git diff-index --quiet HEAD --
+if %errorlevel% neq 0 (
+    echo [2/3] Melakukan commit...
+    git commit -m "%MSG%"
+) else (
+    echo [2/3] Working tree bersih, melanjutkan push...
+)
 
-echo [3/3] Pushing to origin main...
+echo [3/3] Melakukan push ke origin main...
 git push origin main
 
-echo Done!
+echo ==========================================
+echo Selesai!
 pause
