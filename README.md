@@ -2,7 +2,7 @@
 
 Interactive high-fidelity web application and prototype for **Technotama Cybersecurity Academy**, providing practice-oriented EdTech learning paths aligned with industry standards (Deep Navy, Gray, Gold, White design system).
 
-Repository GitHub: [https://github.com/goehbud/Cybac](https://github.com/goehbud/Cybac)
+Repository GitHub: [https://github.com/elanghaqeem-hash/cybac](https://github.com/elanghaqeem-hash/cybac)
 
 ---
 
